@@ -1,5 +1,5 @@
 {
-  "name": "eiwa",
+  "name": "eiwa-lang",
   "displayName": "Eiwa",
   "description": "Eiwa language support (syntax highlighting) for Visual Studio Code.",
   "version": "0.1.1",
