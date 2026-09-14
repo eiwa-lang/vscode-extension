@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "publisher": "eiwa-lang",
   "license": "MIT",
+  "icon": "images/eiwa-icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/eiwa-lang/vscode-extension"
