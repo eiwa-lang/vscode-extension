@@ -108,7 +108,7 @@
       "patterns": [
         {
           "name": "keyword.control.eiwa",
-          "match": "\\b(if|else|when|for|while|do|try|catch|finally|throw|return|break|continue)\\b"
+          "match": "\\b(if|else|when|for|while|do|try|catch|finally|throw|return|leave|continue)\\b"
         },
         {
           "name": "keyword.declaration.eiwa",
