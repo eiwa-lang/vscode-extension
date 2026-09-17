@@ -24,7 +24,7 @@ by porting `queries/highlights.scm` scopes and `grammar.js` keywords.
 ## Installing (dev)
 
 1. Clone this repository.
-2. Run `code --install-extension eiwa-lang-0.1.1.vsix` after packaging with
+2. Run `code --install-extension eiwa-lang-0.1.2.vsix` after packaging with
    `npx @vscode/vsce package`, or press `F5` in this folder to launch an
    Extension Development Host.
 

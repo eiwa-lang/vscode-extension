@@ -2,7 +2,7 @@
   "name": "eiwa-lang",
   "displayName": "Eiwa Language",
   "description": "Eiwa language support (syntax highlighting) for Visual Studio Code.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "eiwa-lang",
   "license": "MIT",
   "icon": "images/eiwa-icon.png",
