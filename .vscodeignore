@@ -3,3 +3,5 @@
 .gitignore
 .vscodeignore
 **/*.map
+src/**
+tsconfig.json

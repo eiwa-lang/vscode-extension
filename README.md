@@ -5,6 +5,11 @@
 
 ## Features
 
+- Eiwa language server (`eiwa-lsp`, stdio LSP 3.17) built into the extension
+  host: hover, go-to-definition (same-file, imports, implicit stdlib,
+  `Type.method`, synthesized `toString`/`equals`/`hashCode`), find
+  implementations, document symbols, and whole-path import links
+  (`textDocument/documentLink`)
 - Syntax highlighting for `.ei` files (`source.eiwa` TextMate grammar):
   composition type system (`type`, `contract`, `skill`, first-class `enum`),
   `object`/`lib`/`test` blocks, lambda-style `for`, string interpolation
@@ -12,6 +17,21 @@
 - Bracket matching and auto-closing pairs
 - Comment toggling (`//` and `/* */`)
 - Indentation rules and `/** */` doc-comment continuation on Enter
+
+## Requirements
+
+The `eiwa-lsp` server binary (built from the
+[Eiwa compiler repo](https://github.com/eiwa-lang/eiwa-lang), `lsp/` →
+`eiwa build` produces `eiwa-lsp`, also shipped in every
+[Eiwa release](https://github.com/eiwa-lang/eiwa/releases)). Put it on your
+`PATH`, or set its location in settings:
+
+```jsonc
+{ "eiwa-lsp.path": "/abs/path/to/eiwa-lsp" }
+```
+
+`EIWAC` env (or `eiwac` on `PATH`) is used for diagnostics, `EIWA_SRC`
+overrides the stdlib location — same as the Zed setup.
 
 ## Relationship with tree-sitter-eiwa
 
@@ -24,14 +44,12 @@ by porting `queries/highlights.scm` scopes and `grammar.js` keywords.
 ## Installing (dev)
 
 1. Clone this repository.
-2. Run `code --install-extension eiwa-lang-0.1.2.vsix` after packaging with
-   `npx @vscode/vsce package`, or press `F5` in this folder to launch an
-   Extension Development Host.
+2. Run `npm install && npm run compile` (or press `F5` in this folder to
+   launch an Extension Development Host).
+3. Run `code --install-extension eiwa-lang-0.2.0.vsix` after packaging with
+   `npx @vscode/vsce package`.
 
-## Limitations
+## Publishing
 
-- No bundled language server yet (syntax highlighting only). For IDE features,
-  build the Eiwa-native server from the compiler repo (`eiwa-lang/lsp/` →
-  `eiwa build` produces `eiwa-lsp`, a stdio LSP 3.17 server) and point any
-  generic VS Code LSP client at it for language id `eiwa`. A first-party
-  client extension is a follow-up.
+Pushing a `v*` tag runs the marketplace workflow (`vscode:prepublish`
+rebuilds `dist/` before `vsce publish`).

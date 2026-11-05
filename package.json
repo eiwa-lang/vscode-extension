@@ -1,8 +1,8 @@
 {
   "name": "eiwa-lang",
   "displayName": "Eiwa Language",
-  "description": "Eiwa language support (syntax highlighting) for Visual Studio Code.",
-  "version": "0.1.2",
+  "description": "Eiwa language support (syntax highlighting + LSP) for Visual Studio Code.",
+  "version": "0.2.0",
   "publisher": "eiwa-lang",
   "license": "MIT",
   "icon": "images/eiwa-icon.png",
@@ -11,17 +11,26 @@
     "url": "https://github.com/eiwa-lang/vscode-extension"
   },
   "engines": {
-    "vscode": "^1.80.0"
+    "vscode": "^1.82.0"
   },
   "categories": [
     "Programming Languages"
   ],
+  "activationEvents": [
+    "onLanguage:eiwa"
+  ],
+  "main": "./dist/extension.js",
   "contributes": {
     "languages": [
       {
         "id": "eiwa",
-        "aliases": ["Eiwa", "eiwa"],
-        "extensions": [".ei"],
+        "aliases": [
+          "Eiwa",
+          "eiwa"
+        ],
+        "extensions": [
+          ".ei"
+        ],
         "configuration": "./language-configuration.json"
       }
     ],
@@ -31,6 +40,40 @@
         "scopeName": "source.eiwa",
         "path": "./syntaxes/eiwa.tmLanguage.json"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Eiwa",
+      "properties": {
+        "eiwa-lsp.path": {
+          "type": "string",
+          "default": "eiwa-lsp",
+          "description": "Path to the eiwa-lsp server binary (Eiwa-native stdio LSP). Falls back to PATH lookup."
+        },
+        "eiwa-lsp.trace.server": {
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "off",
+          "description": "Traces the communication between VS Code and the Eiwa language server."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "check": "tsc --noEmit",
+    "compile": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --format=cjs --platform=node --external:vscode --minify",
+    "vscode:prepublish": "npm run compile",
+    "package": "vsce package"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.82.0",
+    "esbuild": "^0.21.0",
+    "typescript": "^5.4.0",
+    "vscode-languageclient": "^9.0.1"
   }
 }
