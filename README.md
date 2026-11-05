@@ -30,4 +30,8 @@ by porting `queries/highlights.scm` scopes and `grammar.js` keywords.
 
 ## Limitations
 
-- No language server (LSP) yet: no autocomplete, go-to-definition or diagnostics.
+- No bundled language server yet (syntax highlighting only). For IDE features,
+  build the Eiwa-native server from the compiler repo (`eiwa-lang/lsp/` →
+  `eiwa build` produces `eiwa-lsp`, a stdio LSP 3.17 server) and point any
+  generic VS Code LSP client at it for language id `eiwa`. A first-party
+  client extension is a follow-up.
